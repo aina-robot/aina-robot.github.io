@@ -114,7 +114,7 @@
               point-based policies for multi-fingered hands that are robust to
               background changes and can be deployed directly without requiring any
               robot data (including online corrections, reinforcement learning, or simulation).
-            
+
             </p>
           </div>
         </div>
@@ -138,9 +138,47 @@
       <div class="columns is-centered">
         <div class="column">
           <div class="content has-text-centered">
+            <h3 class="title is-4">Stewing</h3>
+            <video id="dollyzoom" controls muted loop playsinline height="100%">
+              <source src="./static/videos/stewing_comp.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content has-text-centered">
+            <h3 class="title is-4">Oven Turning</h3>
+            <video id="dollyzoom" controls muted loop playsinline height="100%">
+              <source src="./static/videos/oven_turning_comp.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column">
+          <div class="content has-text-centered">
+            <h3 class="title is-4">Oven Opening</h3>
+            <video id="dollyzoom" controls muted loop playsinline height="100%">
+              <source src="./static/videos/oven_opening_comp.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content has-text-centered">
+            <h3 class="title is-4">Drawer Opening</h3>
+            <video id="dollyzoom" controls muted loop playsinline height="100%">
+              <source src="./static/videos/drawer_opening_comp.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column">
+          <div class="content has-text-centered">
             <h3 class="title is-4">Cup Pouring</h3>
             <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/pouring_comp_small.mp4" type="video/mp4">
+              <source src="./static/videos/pouring_comp.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -149,7 +187,7 @@
           <div class="content has-text-centered">
             <h3 class="title is-4">Planar Reorientation</h3>
             <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/planar_comp_small.mp4" type="video/mp4">
+              <source src="./static/videos/planar_reorientation_comp.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -160,7 +198,7 @@
           <div class="content has-text-centered">
             <h3 class="title is-4">Toaster Press</h3>
             <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/toaster_cropped_comp_small.mp4" type="video/mp4">
+              <source src="./static/videos/toaster_press_comp.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -168,7 +206,7 @@
           <div class="content has-text-centered">
             <h3 class="title is-4">Toy Picking</h3>
             <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/toy_picking_cropped_comp_small.mp4" type="video/mp4">
+              <source src="./static/videos/toy_picking_comp.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -179,7 +217,7 @@
           <div class="content has-text-centered">
             <h3 class="title is-4">Wiping</h3>
             <video id="dollyzoom" controls muted loop playsinline width="50%">
-              <source src="./static/videos/wiping_cropped_comp_small.mp4" type="video/mp4">
+              <source src="./static/videos/wiping_comp.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -196,13 +234,15 @@
         <div class="column is-full-width">
           <h2 style="margin-bottom: 1em ;" class="title is-3">Human Demonstration Domain Alignment</h2>
           <div class="content">
-            <p>In AINA, we use a single in-scene human demonstration as an anchor to align all in-the-wild human demonstrations. 
-              Specifically, we shift the object and hand points using the demonstrations’ center of mass, and we 
-              align their orientations by applying a rotation around the hands’ gravity axis. 
-              Here, we illustrate the importance of both steps and show how the alignment appears when either the shifting or rotation is omitted.
-              In all the videos below, the red points (light: hand, dark: object) represent 
-              the in-the-wild demonstration being transformed, while the blue points (light: hand, dark: object) 
-              represent the in-scene demonstration. The in-scene demonstration remains the same across 
+            <p>In AINA, we use a single in-scene human demonstration as an anchor to align all in-the-wild human
+              demonstrations.
+              Specifically, we shift the object and hand points using the demonstrations’ center of mass, and we
+              align their orientations by applying a rotation around the hands’ gravity axis.
+              Here, we illustrate the importance of both steps and show how the alignment appears when either the
+              shifting or rotation is omitted.
+              In all the videos below, the red points (light: hand, dark: object) represent
+              the in-the-wild demonstration being transformed, while the blue points (light: hand, dark: object)
+              represent the in-scene demonstration. The in-scene demonstration remains the same across
               all videos, whereas the transformed in-the-wild demonstrations vary depending on the alignment method.
             </p>
           </div>
@@ -223,10 +263,10 @@
         <div class="column">
           <div class="content has-text-centered">
             <h3 class="title is-4">No Rotation</h3>
-            <p>We illustrate how the alignment appears when only shifting is applied. 
-              As shown, because the world frame is assigned randomly during in-the-wild 
-              data collection, the rotation of the hand points cannot be predicted, 
-              and their orientation may be significantly misaligned. In this case, 
+            <p>We illustrate how the alignment appears when only shifting is applied.
+              As shown, because the world frame is assigned randomly during in-the-wild
+              data collection, the rotation of the hand points cannot be predicted,
+              and their orientation may be significantly misaligned. In this case,
               the hand is fully rotated, and the object positions appear swapped.
             </p>
             <video id="dollyzoom" controls muted loop playsinline height="100%">
@@ -240,7 +280,7 @@
         <div class="column">
           <div class="content has-text-centered">
             <h3 class="title is-4">No Shifting and Rotation</h3>
-            <p>We illustrate how the alignment appears when neither shifting nor rotation is applied. 
+            <p>We illustrate how the alignment appears when neither shifting nor rotation is applied.
               As shown, although all objects lie on a similar plane, their positions are significantly misaligned.
             </p>
             <video id="dollyzoom" controls muted loop playsinline width="50%">
