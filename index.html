@@ -206,176 +206,143 @@
   </section>
 
 
-  <section class="section">
-    <div class="container is-max-desktop">
-
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-          <h2 style="margin-bottom: 1em ;" class="title is-3">Policy Rollouts</h2>
-          <div class="content">
-            <p>We show autonomous rollouts with AINA for five different manipulation tasks below.</p>
-          </div>
-        </div>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered" style="margin-bottom: 1em;">Policy Rollouts</h2>
+        <p class="has-text-centered">
+          Autonomous policy rollouts from AINA across multiple manipulation tasks.
+        </p>
       </div>
-
-      <div class="columns is-centered">
-        <div class="column">
-          <div class="content has-text-centered">
-            <h3 class="title is-4">Stewing</h3>
-            <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/stewing_comp.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <div class="column">
-          <div class="content has-text-centered">
-            <h3 class="title is-4">Oven Turning</h3>
-            <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/oven_turning_comp.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-
-      <div class="columns is-centered">
-        <div class="column">
-          <div class="content has-text-centered">
-            <h3 class="title is-4">Oven Opening</h3>
-            <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/oven_opening_comp.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <div class="column">
-          <div class="content has-text-centered">
-            <h3 class="title is-4">Drawer Opening</h3>
-            <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/drawer_opening_comp.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-
-      <div class="columns is-centered">
-        <div class="column">
-          <div class="content has-text-centered">
-            <h3 class="title is-4">Cup Pouring</h3>
-            <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/pouring_comp.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="content has-text-centered">
-            <h3 class="title is-4">Planar Reorientation</h3>
-            <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/planar_reorientation_comp.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-
-      <div class="columns is-centered">
-        <div class="column">
-          <div class="content has-text-centered">
-            <h3 class="title is-4">Toaster Press</h3>
-            <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/toaster_press_comp.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <div class="column">
-          <div class="content has-text-centered">
-            <h3 class="title is-4">Toy Picking</h3>
-            <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/toy_picking_comp.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-
-      <div class="columns is-centered">
-        <div class="column">
-          <div class="content has-text-centered">
-            <h3 class="title is-4">Wiping</h3>
-            <video id="dollyzoom" controls muted loop playsinline width="50%">
-              <source src="./static/videos/wiping_comp.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-
     </div>
-    </div>
-  </section>
 
-  <section class="section">
-    <div class="container is-max-desktop">
+    <!-- Carousel -->
+    <section class="hero is-light is-small">
+      <div class="hero-body">
+        <div class="container">
+          <div id="aina-carousel" class="carousel results-carousel">
 
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-          <h2 style="margin-bottom: 1em ;" class="title is-3">Human Demonstration Domain Alignment</h2>
-          <div class="content">
-            <p>In AINA, we use a single in-scene human demonstration as an anchor to align all in-the-wild human
-              demonstrations.
-              Specifically, we shift the object and hand points using the demonstrations’ center of mass, and we
-              align their orientations by applying a rotation around the hands’ gravity axis.
-              Here, we illustrate the importance of both steps and show how the alignment appears when either the
-              shifting or rotation is omitted.
-              In all the videos below, the red points (light: hand, dark: object) represent
-              the in-the-wild demonstration being transformed, while the blue points (light: hand, dark: object)
-              represent the in-scene demonstration. The in-scene demonstration remains the same across
-              all videos, whereas the transformed in-the-wild demonstrations vary depending on the alignment method.
-            </p>
+            <!-- Slide Template -->
+            <!-- Each card = 1 video + task name -->
+
+            <div class="card">
+              <div class="card-image">
+                <video autoplay muted loop playsinline height="100%">
+                  <source src="./static/videos/stewing_comp.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-content has-text-centered">
+                <p class="item__title" style="font-size: 1.1em; font-weight: 600;">Stewing</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-image">
+                <video autoplay muted loop playsinline height="100%">
+                  <source src="./static/videos/oven_turning_comp.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-content has-text-centered">
+                <p class="item__title" style="font-size: 1.1em; font-weight: 600;">Oven Turning</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-image">
+                <video autoplay muted loop playsinline height="100%">
+                  <source src="./static/videos/oven_opening_comp.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-content has-text-centered">
+                <p class="item__title" style="font-size: 1.1em; font-weight: 600;">Oven Opening</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-image">
+                <video autoplay muted loop playsinline height="100%">
+                  <source src="./static/videos/drawer_opening_comp.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-content has-text-centered">
+                <p class="item__title" style="font-size: 1.1em; font-weight: 600;">Drawer Opening</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-image">
+                <video autoplay muted loop playsinline height="100%">
+                  <source src="./static/videos/pouring_comp.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-content has-text-centered">
+                <p class="item__title" style="font-size: 1.1em; font-weight: 600;">Cup Pouring</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-image">
+                <video autoplay muted loop playsinline height="100%">
+                  <source src="./static/videos/planar_reorientation_comp.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-content has-text-centered">
+                <p class="item__title" style="font-size: 1.1em; font-weight: 600;">Planar Reorientation</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-image">
+                <video autoplay muted loop playsinline height="100%">
+                  <source src="./static/videos/toaster_press_comp.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-content has-text-centered">
+                <p class="item__title" style="font-size: 1.1em; font-weight: 600;">Toaster Press</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-image">
+                <video autoplay muted loop playsinline height="100%">
+                  <source src="./static/videos/toy_picking_comp.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-content has-text-centered">
+                <p class="item__title" style="font-size: 1.1em; font-weight: 600;">Toy Picking</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-image">
+                <video autoplay muted loop playsinline height="100%">
+                  <source src="./static/videos/wiping_comp.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-content has-text-centered">
+                <p class="item__title" style="font-size: 1.1em; font-weight: 600;">Wiping</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="columns is-centered">
-        <div class="column">
-          <div class="content has-text-centered">
-            <h3 class="title is-4">AINA</h3>
-            <p>We showcase how the alignment looks like when both the shifting and rotation are applied. </p>
-            <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/demos_overlapped_rotated_and_translated.mov" type="video/mp4">
-            </video>
-          </div>
-        </div>
+  </div>
+</section>
 
-        <div class="column">
-          <div class="content has-text-centered">
-            <h3 class="title is-4">No Rotation</h3>
-            <p>We illustrate how the alignment appears when only shifting is applied.
-              As shown, because the world frame is assigned randomly during in-the-wild
-              data collection, the rotation of the hand points cannot be predicted,
-              and their orientation may be significantly misaligned. In this case,
-              the hand is fully rotated, and the object positions appear swapped.
-            </p>
-            <video id="dollyzoom" controls muted loop playsinline height="100%">
-              <source src="./static/videos/demo_overlapped_translated.mov" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
+<script>
+  bulmaCarousel.attach('#aina-carousel', {
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    loop: true,
+    autoplay: true,
+    duration: 300,
+  });
+</script>
 
-      <div class="columns is-centered">
-        <div class="column">
-          <div class="content has-text-centered">
-            <h3 class="title is-4">No Shifting and Rotation</h3>
-            <p>We illustrate how the alignment appears when neither shifting nor rotation is applied.
-              As shown, although all objects lie on a similar plane, their positions are significantly misaligned.
-            </p>
-            <video id="dollyzoom" controls muted loop playsinline width="50%">
-              <source src="./static/videos/demos_overlapped_initial.mov" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    </div>
-  </section>
 
 
 
