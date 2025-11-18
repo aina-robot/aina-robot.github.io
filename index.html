@@ -370,7 +370,7 @@
     <h2 class="title is-3">Experiments</h2>
 
     <div class="content">
-      <h3 class="title is-4">1. FTF Performance</h3>
+      <h3 class="title is-4">1. AINA Performance</h3>
       <div class="tabs is-centered is-boxed" id="ftf-video-tabs">
         <ul>
           <li class="is-active" data-target="video-oven-turning"><a>Oven Turning</a></li>
@@ -580,200 +580,13 @@
       </div>
     </div>
 
-    <!-- FTF Performance with Toggle Videos -->
-    <!-- <div class="content">
-      <h3 class="title is-4">1. Robot Rollouts</h3>
-      <div class="tabs is-centered is-boxed" id="ftf-video-tabs">
-        <ul>
-          <li class="is-active" data-target="video-bread"><a>Oven Turning</a></li>
-          <li data-target="video-cup"><a>Stowing</a></li>
-          <li data-target="video-egg"><a>Cup Pouring</a></li>
-          <li data-target="video-chips"><a>Planar Reorientation</a></li>
-          <li data-target="video-cap"><a>Wiping</a></li>
-          <li data-target="video-cup"><a>Drawer Opening</a></li>
-          <li data-target="video-egg"><a>Oven Opening</a></li>
-          <li data-target="video-chips"><a>Toy Picking</a></li>
-          <li data-target="video-cap"><a>Toaster Press</a></li>
-        </ul>
-      </div>
-
-      <div id="ftf-video-display">
-        <div class="video-content" id="video-bread">
-          <div class="columns">
-            <div class="column is-centered">
-              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
-              <video  controls autoplay muted loop playsinline width="60%">
-                <source src="./static/videos/oven-turning-human.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">
-                Robot Manipulation
-                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
-              </h4>
-
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/oven_turning_comp.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-        <div class="video-content" id="video-cup"  style="display: none;">
-          <div class="columns">
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/stewing-human.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">
-                Robot Manipulation
-                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
-              </h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/stewing_comp.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-        <div class="video-content" id="video-egg"  style="display: none;">
-          <div class="columns">
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/red-cup-pouring-human.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">
-                Robot Manipulation
-                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
-              </h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/pouring_comp.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-        <div class="video-content" id="video-chips"  style="display: none;">
-          <div class="columns">
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/banana-human-cropped.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">
-                Robot Manipulation
-                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
-              </h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/planar_reorientation_comp.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-        <div class="video-content" id="video-cap"  style="display: none;">
-          <div class="columns">
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/wiping-human-cropped.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">
-                Robot Manipulation
-                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
-              </h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/wiping_comp.mp4" type="video/mp4">
-              </video>
-            </div>
-        </div>
-        <div class="video-content" id="video-cap"  style="display: none;">
-          <div class="columns">
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/drawer-opening-human.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">
-                Robot Manipulation
-                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
-              </h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/drawer_opening_comp.mp4" type="video/mp4">
-              </video>
-            </div>
-        </div>
-        <div class="video-content" id="video-cap"  style="display: none;">
-          <div class="columns">
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/oven-opening-human.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">
-                Robot Manipulation
-                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x3 speed)</span>
-              </h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/oven_opening_comp.mp4" type="video/mp4">
-              </video>
-            </div>
-        </div>
-        <div class="video-content" id="video-cap"  style="display: none;">
-          <div class="columns">
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/toy-picking-human-cropped.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">
-                Robot Manipulation
-                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
-              </h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/toy_picking_comp.mp4" type="video/mp4">
-              </video>
-            </div>
-        </div>
-        <div class="video-content" id="video-cap"  style="display: none;">
-          <div class="columns">
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/toaster-human-cropped.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="column">
-              <h4 class="title is-5 has-text-centered">
-                Robot Manipulation
-                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
-              </h4>
-              <video  controls autoplay muted loop playsinline width="100%">
-                <source src="./static/videos/toaster_press_comp.mp4" type="video/mp4">
-              </video>
-            </div>
-        </div>
-      </div>
-    </div> -->
-
 
     <!-- Comparison to Baselines -->
     <div class="content">
       <h3 class="title is-4" style="margin-top: 3rem; margin-bottom: 1.5rem;">2. Comparison to Baselines</h3>
 
-      <p>TABLE I: Performance comparison of different gripper action spaces in Human Demo</p>
+      <p>TABLE I: Performance comparison of policies trained with different datasets. 
+         Comparisons are done in similar deployment scenarios, with a minimum of 10 trials each.</p>
       <div class="columns is-centered">
         <div class="column is-four-fifths">
           <div class="table-container">
@@ -781,39 +594,34 @@
               <tbody>
                 <tr>
                   <th class="border-right"></th>
-                  <th class="has-text-centered">FTF</th>
-                  <th class="has-text-centered">Binary Gripper</th>
-                  <th class="has-text-centered border-right">Continuous Gripper</th>
+                  <th class="has-text-centered">Toaster Press</th>
+                  <th class="has-text-centered border-right">Toy Picking</th>
                 </tr>
                 <tr>
-                  <th class="border-right">Place bread on plate</th>
+                  <th class="border-right">In-Scene Only</th>
+                  <td class="has-text-centered">3/10</td>
+                  <td class="has-text-centered">1/10</td>
+                  <!-- <td class="has-text-centered border-right">0/15</td> -->
+                </tr>
+                <tr>
+                  <th class="border-right">In-The-Wild Only</th>
+                  <td class="has-text-centered">0/10</td>
+                  <td class="has-text-centered">0/10</td>
+                </tr>
+                <tr>
+                  <th class="border-right">In-Scene Transform & In-The-Wild</th>
+                  <td class="has-text-centered">0/10</td>
+                  <td class="has-text-centered">1/10</td>
+                </tr>
+                <tr>
+                  <th class="border-right">In-Scene Training & In-The-Wild</th>
+                  <td class="has-text-centered">6/10</td>
+                  <td class="has-text-centered">2/10</td>
+                </tr>
+                <tr>
+                  <th class="border-right"><strong>AINA</strong></th>
                   <td class="has-text-centered"><b>13/15</b></td>
-                  <td class="has-text-centered">0/15</td>
-                  <td class="has-text-centered border-right">0/15</td>
-                </tr>
-                <tr>
-                  <th class="border-right">Unstack cup</th>
-                  <td class="has-text-centered"><b>9/15</b></td>
-                  <td class="has-text-centered">0/15</td>
-                  <td class="has-text-centered border-right">0/15 (2 picked 3 cups)</td>
-                </tr>
-                <tr>
-                  <th class="border-right">Place egg in pot</th>
                   <td class="has-text-centered"><b>13/15</b></td>
-                  <td class="has-text-centered">0/15</td>
-                  <td class="has-text-centered border-right">0/15</td>
-                </tr>
-                <tr>
-                  <th class="border-right">Place chips</th>
-                  <td class="has-text-centered"><b>10/15</b></td>
-                  <td class="has-text-centered">0/15</td>
-                  <td class="has-text-centered border-right">0/15</td>
-                </tr>
-                <tr>
-                  <th class="border-right">Twist bottle cap</th>
-                  <td class="has-text-centered"><b>13/15</b></td>
-                  <td class="has-text-centered">11/15 (1/15 break gripper pads)</td>
-                  <td class="has-text-centered border-right">0/15</td>
                 </tr>
               </tbody>
             </table>
@@ -821,7 +629,7 @@
         </div>
       </div>
 
-      <p>TABLE II: Performance comparison of different gripper action spaces in Robot Teleop Demo</p>
+      <p>TABLE II: Comparison of success of AINA to policies trained with RGB images as input</p>
       <div class="columns is-centered">
         <div class="column is-four-fifths">
           <div class="table-container">
@@ -829,45 +637,178 @@
               <tbody>
                 <tr>
                   <th class="border-right"></th>
-                  <th class="has-text-centered">FTF</th>
-                  <th class="has-text-centered">Binary Gripper</th>
-                  <th class="has-text-centered border-right">Continuous Gripper</th>
+                  <th class="has-text-centered">Oven Opening</th>
+                  <th class="has-text-centered border-right">Drawer Opening</th>
                 </tr>
                 <tr>
-                  <th class="border-right">Place bread on plate</th>
-                  <td class="has-text-centered"><b>5/15</b></td>
-                  <td class="has-text-centered">0/15</td>
-                  <td class="has-text-centered border-right">3/15</td>
+                  <th class="border-right">Masked BAKU</th>
+                  <td class="has-text-centered">6/15</td>
+                  <td class="has-text-centered">1/15</td>
+                  <!-- <td class="has-text-centered border-right">0/15</td> -->
                 </tr>
                 <tr>
-                  <th class="border-right">Unstack cup</th>
-                  <td class="has-text-centered"><b>4/15</b></td>
-                  <td class="has-text-centered">0/15 (6 picked 3 cups)</td>
-                  <td class="has-text-centered border-right">0/15 (2 picked 2 cups)</td>
-                </tr>
-                <tr>
-                  <th class="border-right">Place egg in pot</th>
+                  <th class="border-right">Masked BAKU with History/th>
                   <td class="has-text-centered">0/15</td>
                   <td class="has-text-centered">0/15</td>
-                  <td class="has-text-centered border-right">0/15</td>
                 </tr>
                 <tr>
-                  <th class="border-right">Place chips</th>
-                  <td class="has-text-centered"><b>3/15</b></td>
-                  <td class="has-text-centered">0/15</td>
-                  <td class="has-text-centered border-right">0/15</td>
-                </tr>
-                <tr>
-                  <th class="border-right">Twist bottle cap</th>
-                  <td class="has-text-centered">9/15</td>
+                  <th class="border-right"><strong>AINA</strong></th>
                   <td class="has-text-centered"><b>12/15</b></td>
-                  <td class="has-text-centered border-right">8/15</td>
+                  <td class="has-text-centered"><b>11/15</b></td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
+      <!-- <p>All models are trained on 30 demos per task.</p> -->
+    </div>
+
+    <div class="content">
+      <h3 class="title is-4" style="margin-top: 3rem; margin-bottom: 1.5rem;">3. Height Experiments</h3>
+        <p>We test how AINA performs when the height of the operation space changes for two
+          of our tasks. For each height level we collect an additional in-scene human
+          demonstration and train new policies. We observe that with minimal 
+          human effort AINA generalizes well to different heights. </p>
+
+        <div class="tabs is-centered is-boxed" id="ftf-video-tabs">
+          <ul>
+            <li class="is-active" data-target="video-height-1"><a>Toy Picking</a></li>
+            <li data-target="video-height-2"><a>Wiping</a></li>
+          </ul>
+        </div>
+
+        <div id="ftf-video-display">
+          <div class="video-content" id="video-height-1">
+            <div class="columns">
+              <div class="column is-centered">
+                <h4 class="title is-5 has-text-centered">Height 1</h4>
+                <video controls autoplay muted loop playsinline width="100%" style="display: block; margin: 0 auto;">
+                  <source src="./static/videos/toy-height-1.mp4" type="video/mp4">
+                </video>
+                <p class="has-text-centered">Success Rate = 5/10</p>
+              </div>
+              <div class="column">
+                <h4 class="title is-5 has-text-centered">Height 2</h4>
+                <video  controls autoplay muted loop playsinline width="100%">
+                  <source src="./static/videos/toy-height-2.mp4" type="video/mp4">
+                </video>
+                <p class="has-text-centered">Success Rate = 6/10</p>
+              </div>
+              <div class="column is-centered">
+                <h4 class="title is-5 has-text-centered">Height 3</h4>
+                <video controls autoplay muted loop playsinline width="100%" style="display: block; margin: 0 auto;">
+                  <source src="./static/videos/toy-height-3.mp4" type="video/mp4">
+                </video>
+                <p class="has-text-centered">Success Rate = 2/10</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-content" id="video-height-2" style="display: none;">
+            <div class="columns">
+              <div class="column is-centered">
+                <h4 class="title is-5 has-text-centered">Height 1</h4>
+                <video controls autoplay muted loop playsinline width="100%" style="display: block; margin: 0 auto;">
+                  <source src="./static/videos/wiping-height-1.mp4" type="video/mp4">
+                </video>
+                <p class="has-text-centered">Success Rate = 5/10</p>
+              </div>
+              <div class="column">
+                <h4 class="title is-5 has-text-centered">Height 2</h4>
+                <video  controls autoplay muted loop playsinline width="100%">
+                  <source src="./static/videos/wiping-height-2.mp4" type="video/mp4">
+                </video>
+                <p class="has-text-centered">Success Rate = 5/10</p>
+              </div>
+              <div class="column is-centered">
+                <h4 class="title is-5 has-text-centered">Height 3</h4>
+                <video controls autoplay muted loop playsinline width="100%" style="display: block; margin: 0 auto;">
+                  <source src="./static/videos/wiping-height-3.mp4" type="video/mp4">
+                </video>
+                <p class="has-text-centered">Success Rate = 8/10</p>
+              </div>
+            </div>
+          </div>
+
+
+        <!-- END OF THE TASK ROLLOUTS -->
+        </div>
+      
+      <!-- <p>All models are trained on 30 demos per task.</p> -->
+    </div>
+
+    <div class="content">
+      <h3 class="title is-4" style="margin-top: 3rem; margin-bottom: 1.5rem;">4. Generalization Experiments</h3>
+        <p>We test object generalization capabilities of AINA by deploying trained
+          policies on different objects for three of our tasks while segmenting the
+          object with new prompts. We observe that while AINA performs relatively well,
+          it fails when the shape and weight is significantly different. 
+          Text prompts used are showcased at the title of each video. </p>
+
+        <div class="tabs is-centered is-boxed" id="ftf-video-tabs">
+          <ul>
+            <li class="is-active" data-target="video-gen-1"><a>Toy Picking</a></li>
+            <li data-target="video-gen-2"><a>Wiping</a></li>
+            <li data-target="video-gen-3"><a>Toaster</a></li>
+          </ul>
+        </div>
+
+        <div id="ftf-video-display">
+          <div class="video-content" id="video-gen-1">
+            <div class="columns">
+              <div class="column is-centered">
+                <h4 class="title is-5 has-text-centered">Popcorn Package, Bowl</h4>
+                <video controls autoplay muted loop playsinline width="100%" style="display: block; margin: 0 auto;">
+                  <source src="./static/videos/toy-gen-1.mp4" type="video/mp4">
+                </video>
+                <p class="has-text-centered">Success Rate = 1/10</p>
+              </div>
+              <div class="column">
+                <h4 class="title is-5 has-text-centered">Toy, Bowl</h4>
+                <video  controls autoplay muted loop playsinline width="100%">
+                  <source src="./static/videos/toy-gen-2.mp4" type="video/mp4">
+                </video>
+                <p class="has-text-centered">Success Rate = 2/10</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-content" id="video-gen-2" style="display: none;">
+            <div class="columns">
+              <div class="column is-centered">
+                <h4 class="title is-5 has-text-centered">Sponge</h4>
+                <video controls autoplay muted loop playsinline width="100%" style="display: block; margin: 0 auto;">
+                  <source src="./static/videos/wiping-gen-1.mp4" type="video/mp4">
+                </video>
+                <p class="has-text-centered">Success Rate = 7/10</p>
+              </div>
+              <div class="column">
+                <h4 class="title is-5 has-text-centered">Eraser</h4>
+                <video  controls autoplay muted loop playsinline width="100%">
+                  <source src="./static/videos/wiping-gen-2.mp4" type="video/mp4">
+                </video>
+                <p class="has-text-centered">Success Rate = 5/10</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-content" id="video-gen-3" style="display: none;">
+            <div class="columns">
+              <div class="column is-centered">
+                <h4 class="title is-5 has-text-centered">Toaster</h4>
+                <video controls autoplay muted loop playsinline width="100%" style="display: block; margin: 0 auto;">
+                  <source src="./static/videos/toaster-gen-1.mp4" type="video/mp4">
+                </video>
+                <p class="has-text-centered">Success Rate = 6/10</p>
+              </div>
+            </div>
+          </div>
+
+
+        <!-- END OF THE TASK ROLLOUTS -->
+        </div>
+      
       <!-- <p>All models are trained on 30 demos per task.</p> -->
     </div>
 
