@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="We present AINA, a novel framework to learn multi-fingered policies for everyday tasks, from in-the-wild human demonstrations only.">   
+  <meta name="keywords" content="AINA, Dexterity from smart lenses, multi-fingered policy learning, imitation learning, point policy"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AINA</title>
+
+
+  <!-- For Google Analytical. It's optional! -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id="></script> -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', ''); // Optional: Fill id to ''.
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/custom.css">
+  <link rel="icon" href="./static/images/aina-icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="static/js/full_screen_video.js"></script>
+  <script src="static/js/auto_resize_first_page_text.js"></script>
+  <script src="static/js/open_in_new_tab.js"></script>
+</head>
+<body>
+
+<div class="full-page-image">
+  <video id="bg-video" autoplay loop muted playsinline>
+    <source src="static/videos/website_teaser.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <div class="first-page-title" style="padding: 0 39.5px">
+    <div class="is-size-1" id="first-page-main-title-text">
+      <span style="color:#ff9204">AINA</span> 🪞         
+    </div>
+    <div class="is-size-3" id="first-page-sub-title-text">
+      Multi-Fingered Robot Manipulation with In-the-Wild Human Demonstrations
+    </div>
+  </div>
+  <!-- <div class="first-page-video-speed is-size-7" id="bg-video-speed" style="padding: 0 20px">
+    <div class="is-size-7" id="bg-video-speed-text">
+      10X Speed
+    </div>
+  </div> -->
+</div>
+  
+<nav class="navbar" role="navigation" aria-label="main navigation">
+</nav>
+<!-- Paper Info Section -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <!-- Title -->
+          <h1 class="title is-1 publication-title">
+            <span style="color:#ff9204">AINA</span> 🪞
+            <br>
+            <span class="is-size-2">Dexterity from Smart Lenses: Multi-Fingered Robot Manipulation with In-the-Wild Human Demonstrations</span>
+          </h1>
+
+          <!-- Conference -->
+          <!-- <h2 class="title is-4">
+            <a href="https://rss25-roboreps.github.io/#:~:text=Feel%20the%20Force%3A%20Contact%2DDriven%20Learning,Bhirangi%2C%20Pieter%20Abbeel%2C%20Lerrel%20Pinto" class="conference">
+              RSS Workshop 2025
+            </a>
+          </h2> -->
+
+         <!-- Authors -->
+
+        <div class="is-size-5 publication-authors">
+          <span class="author-block" style="margin-right: 1rem;"><a href="https://irmakguzey.github.io/ style="color: #2980b9 !important;">Irmak Guzey<sup>12</sup></a></span>
+          <span class="author-block" style="margin-right: 1rem;"><a href="https://haozhi.io" style="color: #2980b9 !important;">Haozhi Qi<sup>2</sup></a></span>
+          <span class="author-block" style="margin-right: 1rem;"><a href="hhttps://robotgradient.com" style="color: #2980b9 !important;">Julen Urain<sup>2</sup></a></span>
+          <span class="author-block" style="margin-right: 1rem;"><a href="https://changhaowang.github.io" style="color: #2980b9 !important;">Changhao Wang<sup>2</sup></a></span>
+          <span class="author-block" style="margin-right: 1rem;"><a href="https://jessicayin.github.io" style="color: #2980b9 !important;">Jessica Yin<sup>2</sup></a></span>
+          <span class="author-block" style="margin-right: 1rem;"><a href="..." style="color: #2980b9 !important;">Krishna Bodduluri<sup>2</sup></a></span>
+          <span class="author-block" style="margin-right: 1rem;"><a href="https://www.linkedin.com/in/mike-maroje-lambeta/" style="color: #2980b9 !important;">Mike Maroje Lambeta<sup>2</sup></a></span>
+          <span class="author-block" style="margin-right: 1rem;"><a href="https://lerrelpinto.com/" style="color: #2980b9 !important;">Lerrel Pinto<sup>1</sup></a></span>
+          <span class="author-block" style="margin-right: 1rem;"><a href="https://akshararai.github.io" style="color: #2980b9 !important;">Akshara Rai<sup>2</sup></a></span>
+          <span class="author-block" style="margin-right: 1rem;"><a href="https://people.eecs.berkeley.edu/~malik/" style="color: #2980b9 !important;">Jitendra Malik<sup>2</sup></a></span>
+          <span class="author-block" style="margin-right: 1rem;"><a href="https://www.linkedin.com/in/tingfan-wu-5359669/" style="color: #2980b9 !important;">Tingfan Wu<sup>2</sup></a></span>
+          <span class="author-block" style="margin-right: 1rem;"><a href="https://akashsharma02.github.io" style="color: #2980b9 !important;">Akash Sharma<sup>2</sup></a></span>
+          <span class="author-block" style="margin-right: 1rem;"><a href="https://homangab.github.io" style="color: #2980b9 !important;">Homanga Bharadhwaj<sup>2</sup></a></span>
+        </div>
+        <div class="is-size-5 publication-authors">
+          <span class="author-block" style="margin-right: 1rem;"><sup>1</sup>New York University</span>
+          <span class="author-block"><sup>2</sup>Meta FAIR</span>
+        </div>
+
+
+          <!-- Buttons -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Paper PDF -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2506.01944"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- arXiv -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2506.01944"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <!-- Video -->
+              <!-- <span class="link-block">
+                <a href="https://youtu.be/jrUJ2Ne2vhY"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-youtube"></i></span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+
+              <!-- Code -->
+              <span class="link-block">
+                <a href="https://github.com/feel-the-force-ftf/feel-the-force"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- TODO: Teaser -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video class="large-video" controls loop playsinline height="100%">
+        <source src="./static/videos/main_video_compressed.mp4"
+                type="video/mp4">
+      </video>
+      <!-- If it is image
+        <img id="teaser" height="100%" src="/path/to/image">
+      -->
+      <h2 class="subtitle has-text-centered">
+        We present <strong>AINA</strong>, a framework for learning multi-fingered policies from in-the-wild human data collected with smart glasses,
+        without requiring any robot data (including online corrections or simulation).
+      </h2>      
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Learning multi-fingered robot policies from humans performing
+              daily tasks in natural environments has long been a grand goal
+              in the robotics community. Achieving this would mark significant
+              progress toward generalizable robot manipulation in human environments,
+              as it would reduce the reliance on labor-intensive robot interaction data collection.
+              Despite substantial efforts, progress toward this goal has been bottle-necked
+              by the embodiment gap between humans and robots, as well as by difficulties
+              in extracting relevant contextual and motion cues that enable
+              learning of autonomous policies from in-the-wild human videos.
+              We claim that with simple yet sufficiently powerful hardware
+              for obtaining human data and our proposed framework AINA, we are now one significant step closer to
+              achieving this dream.
+
+            </p>
+            <p>
+              AINA enables learning multi-fingered policies from data collected by anyone,
+              anywhere, and in any environment using Aria Gen 2 glasses.
+              These glasses are lightweight and portable, feature a high-resolution
+              RGB camera, provide accurate on-board 3D head and hand poses,
+              and offer a wide stereo view that can be leveraged for depth
+              estimation of the scene. This setup enables the learning of 3D
+              point-based policies for multi-fingered hands that are robust to
+              background changes and can be deployed directly without requiring any
+              robot data (including online corrections, reinforcement learning, or simulation).
+
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- TODO: Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Summary Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<!-- Overview. -->
+<section class="section">  
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Overview</h2>
+        <div class="is-vcentered">
+            <video class="large-video" autoplay muted controls loop playsinline height="100%">
+                <source src="./static/videos/overview-video-cropped.mp4"
+                        type="video/mp4">
+            </video>
+        </div>
+        <div class="content has-text-justified">
+          The workflow is as follows: a human wears the Aria 2 glasses and collects in-the-wild demonstrations on any surface with arbitrary backgrounds (left), 
+          then records a single demonstration in the robot deployment space (middle), 
+          after which point-based policies are trained and directly deployed on the robot (right). 
+          With an average of just 15 minutes of human video collection effort, <strong>AINA</strong> is able to train autonomous robot policies.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Overview. -->
+<!-- Method -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Method</h2>
+
+    <!-- Tactile Data Collection -->
+    <div class="content">
+      <h3 class="title is-4">1. Data Processing</h3>
+      <video class="large-video" autoplay muted controls loop playsinline height="100%">
+            <source src="./static/videos/data-processing-cropped.mp4"
+                    type="video/mp4">
+        </video>
+      <p>
+        Given a single in-the-wild demonstration, we first apply 2D object tracking 
+        to each frame using language-prompted off-the-shelf computer vision models. 
+        Next, we rectify the images from the front two SLAM cameras and estimate 
+        the scene depth with FoundationStereo. Finally, we unproject the 2D object 
+        tracks onto the estimated depth to obtain 3D object tracks aligned with the 
+        on-board hand pose.
+      </p>
+    </div>
+
+    <!-- Human-to-Robot Embodiment Transfer -->
+    <div class="content">
+      <h3 class="title is-4">2. Human Demonstration Domain Alignment</h3>
+      <!-- <img src="./static/images/human2robot.png" alt="Domain Alignment"> -->
+      <p>
+        In AINA, we use a single in-scene human demonstration as an anchor to align all in-the-wild human demonstrations. 
+        Specifically, we shift the object and hand points using the demonstrations’ center of mass, and we 
+        align their orientations by applying a rotation around the hands’ gravity axis. 
+        Here, we illustrate the importance of both steps and show how the alignment appears when either the shifting or rotation is omitted.
+        In all the videos below, the red points (light: hand, dark: object) represent 
+        the in-the-wild demonstration being transformed, while the blue points (light: hand, dark: object) 
+        represent the in-scene demonstration. The in-scene demonstration remains the same across 
+        all videos, whereas the transformed in-the-wild demonstrations vary depending on the alignment method.
+      </p>
+
+      <div class="columns is-centered">
+        <div class="column">
+          <div class="content has-text-centered">
+            <h3 class="title is-4">No Shifting and Rotation</h3>
+            <video id="dollyzoom" controls muted loop playsinline height="100%">
+              <source src="./static/videos/demos_overlapped_initial.mov" type="video/mp4">
+            </video>
+            <p>
+              We illustrate how the alignment appears when neither shifting nor rotation is applied. 
+              As shown, although all objects lie on a similar plane, their positions are significantly misaligned.
+            </p>
+            
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="content has-text-centered">
+            <h3 class="title is-4">No Rotation</h3>
+            <video id="dollyzoom" controls muted loop playsinline height="100%">
+              <source src="./static/videos/demo_overlapped_translated.mov" type="video/mp4">
+            </video>
+            <p>We illustrate how the alignment appears when only shifting is applied. 
+              As shown, because the world frame is assigned randomly during in-the-wild 
+              data collection, the rotation of the hand points cannot be predicted, 
+              and their orientation may be significantly misaligned. In this case, 
+              the hand is fully rotated, and the object positions appear swapped.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column">
+          <div class="content has-text-centered">
+            <h3 class="title is-4">AINA</h3>
+            <video id="dollyzoom" controls muted loop playsinline width="50%">
+              <source src="./static/videos/demos_overlapped_rotated_and_translated.mov" type="video/mp4">
+            </video>
+            <p>We showcase how the alignment looks like when both the shifting and rotation are applied. </p>
+          
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Policy Learning -->
+    <div class="content">
+      <h3 class="title is-4">3. Policy Learning</h3>
+        <video class="large-video" autoplay muted controls loop playsinline height="100%">
+            <source src="./static/videos/policy-learning-cropped.mp4"
+                    type="video/mp4">
+        </video>
+      <p>
+        After this extraction, given a history of object and fingertip keypoints, 
+        we first pass them through a vector-neuron MLP to obtain a latent representation 
+        for each point. These latents are then fed into a transformer encoder as 
+        separate tokens. But since only fingertips have correspondence across 
+        different demonstrations, we apply learned positional encodings only 
+        to the fingertip tokens. The transformer encoder’s output is passed 
+        through an MLP to predict a future trajectory of points. 
+        Finally, the loss is computed as the MSE between the ground-truth and 
+        predicted fingertip points, and the entire system is trained end-to-end 
+        with this objective.
+      </p>
+    </div>
+
+  </div>
+</section>
+<!--/ Method -->
+
+
+<!-- Experiments -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Experiments</h2>
+
+    <div class="content">
+      <h3 class="title is-4">1. FTF Performance</h3>
+      <div class="tabs is-centered is-boxed" id="ftf-video-tabs">
+        <ul>
+          <li class="is-active" data-target="video-oven-turning"><a>Oven Turning</a></li>
+          <li data-target="video-stowing"><a>Stowing</a></li>
+          <li data-target="video-pouring"><a>Cup Pouring</a></li>
+          <li data-target="video-planar"><a>Planar Reorientation</a></li>
+          <li data-target="video-wiping"><a>Wiping</a></li>
+          <li data-target="video-drawer"><a>Drawer Opening</a></li>
+          <li data-target="video-oven-opening"><a>Oven Opening</a></li>
+          <li data-target="video-toy"><a>Toy Picking</a></li>
+          <li data-target="video-toaster"><a>Toaster Press</a></li>
+        </ul>
+      </div>
+
+      <div id="ftf-video-display">
+        <div class="video-content" id="video-oven-turning">
+          <div class="columns">
+            <div class="column is-centered">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video controls autoplay muted loop playsinline width="60%" style="display: block; margin: 0 auto;">
+                <source src="./static/videos/oven-turning-human.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/oven_turning_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-content" id="video-stowing" style="display: none;">
+          <div class="columns">
+            <div class="column is-centered">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video controls autoplay muted loop playsinline width="60%" style="display: block; margin: 0 auto;">
+                <source src="./static/videos/stewing-human.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/stewing_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        
+        <div class="video-content" id="video-pouring" style="display: none;">
+          <div class="columns">
+            <div class="column is-centered">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video controls autoplay muted loop playsinline width="60%" style="display: block; margin: 0 auto;">
+                <source src="./static/videos/pouring-human-cropped.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/pouring_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-content" id="video-planar" style="display: none;">
+          <div class="columns">
+            <div class="column is-centered">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video controls autoplay muted loop playsinline width="60%" style="display: block; margin: 0 auto;">
+                <source src="./static/videos/banana-human-cropped.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/planar_reorientation_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-content" id="video-wiping" style="display: none;">
+          <div class="columns">
+            <div class="column is-centered">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video controls autoplay muted loop playsinline width="60%" style="display: block; margin: 0 auto;">
+                <source src="./static/videos/wiping-human-cropped.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/wiping_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-content" id="video-drawer" style="display: none;">
+          <div class="columns">
+            <div class="column is-centered">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video controls autoplay muted loop playsinline width="60%" style="display: block; margin: 0 auto;">
+                <source src="./static/videos/drawer-opening-human.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/drawer_opening_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-content" id="video-oven-opening" style="display: none;">
+          <div class="columns">
+            <div class="column is-centered">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video controls autoplay muted loop playsinline width="60%" style="display: block; margin: 0 auto;">
+                <source src="./static/videos/oven-opening-human.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/oven_opening_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-content" id="video-toy" style="display: none;">
+          <div class="columns">
+            <div class="column is-centered">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video controls autoplay muted loop playsinline width="60%" style="display: block; margin: 0 auto;">
+                <source src="./static/videos/toy-picking-human-cropped.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/toy_picking_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-content" id="video-toaster" style="display: none;">
+          <div class="columns">
+            <div class="column is-centered">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video controls autoplay muted loop playsinline width="60%" style="display: block; margin: 0 auto;">
+                <source src="./static/videos/toaster-human-cropped.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/toaster_press_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+
+      <!-- END OF THE TASK ROLLOUTS -->
+      </div>
+    </div>
+
+    <!-- FTF Performance with Toggle Videos -->
+    <!-- <div class="content">
+      <h3 class="title is-4">1. Robot Rollouts</h3>
+      <div class="tabs is-centered is-boxed" id="ftf-video-tabs">
+        <ul>
+          <li class="is-active" data-target="video-bread"><a>Oven Turning</a></li>
+          <li data-target="video-cup"><a>Stowing</a></li>
+          <li data-target="video-egg"><a>Cup Pouring</a></li>
+          <li data-target="video-chips"><a>Planar Reorientation</a></li>
+          <li data-target="video-cap"><a>Wiping</a></li>
+          <li data-target="video-cup"><a>Drawer Opening</a></li>
+          <li data-target="video-egg"><a>Oven Opening</a></li>
+          <li data-target="video-chips"><a>Toy Picking</a></li>
+          <li data-target="video-cap"><a>Toaster Press</a></li>
+        </ul>
+      </div>
+
+      <div id="ftf-video-display">
+        <div class="video-content" id="video-bread">
+          <div class="columns">
+            <div class="column is-centered">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video  controls autoplay muted loop playsinline width="60%">
+                <source src="./static/videos/oven-turning-human.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/oven_turning_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="video-content" id="video-cup"  style="display: none;">
+          <div class="columns">
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/stewing-human.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/stewing_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="video-content" id="video-egg"  style="display: none;">
+          <div class="columns">
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/red-cup-pouring-human.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/pouring_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="video-content" id="video-chips"  style="display: none;">
+          <div class="columns">
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/banana-human-cropped.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/planar_reorientation_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="video-content" id="video-cap"  style="display: none;">
+          <div class="columns">
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/wiping-human-cropped.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/wiping_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+        </div>
+        <div class="video-content" id="video-cap"  style="display: none;">
+          <div class="columns">
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/drawer-opening-human.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/drawer_opening_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+        </div>
+        <div class="video-content" id="video-cap"  style="display: none;">
+          <div class="columns">
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/oven-opening-human.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x3 speed)</span>
+              </h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/oven_opening_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+        </div>
+        <div class="video-content" id="video-cap"  style="display: none;">
+          <div class="columns">
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/toy-picking-human-cropped.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/toy_picking_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+        </div>
+        <div class="video-content" id="video-cap"  style="display: none;">
+          <div class="columns">
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">Human Demonstration</h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/toaster-human-cropped.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h4 class="title is-5 has-text-centered">
+                Robot Manipulation
+                <span style="color: rgb(154, 153, 153); font-size: 0.8em; margin-left: 8px;">(x2 speed)</span>
+              </h4>
+              <video  controls autoplay muted loop playsinline width="100%">
+                <source src="./static/videos/toaster_press_comp.mp4" type="video/mp4">
+              </video>
+            </div>
+        </div>
+      </div>
+    </div> -->
+
+
+    <!-- Comparison to Baselines -->
+    <div class="content">
+      <h3 class="title is-4" style="margin-top: 3rem; margin-bottom: 1.5rem;">2. Comparison to Baselines</h3>
+
+      <p>TABLE I: Performance comparison of different gripper action spaces in Human Demo</p>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="table-container">
+            <table class="table is-fullwidth">
+              <tbody>
+                <tr>
+                  <th class="border-right"></th>
+                  <th class="has-text-centered">FTF</th>
+                  <th class="has-text-centered">Binary Gripper</th>
+                  <th class="has-text-centered border-right">Continuous Gripper</th>
+                </tr>
+                <tr>
+                  <th class="border-right">Place bread on plate</th>
+                  <td class="has-text-centered"><b>13/15</b></td>
+                  <td class="has-text-centered">0/15</td>
+                  <td class="has-text-centered border-right">0/15</td>
+                </tr>
+                <tr>
+                  <th class="border-right">Unstack cup</th>
+                  <td class="has-text-centered"><b>9/15</b></td>
+                  <td class="has-text-centered">0/15</td>
+                  <td class="has-text-centered border-right">0/15 (2 picked 3 cups)</td>
+                </tr>
+                <tr>
+                  <th class="border-right">Place egg in pot</th>
+                  <td class="has-text-centered"><b>13/15</b></td>
+                  <td class="has-text-centered">0/15</td>
+                  <td class="has-text-centered border-right">0/15</td>
+                </tr>
+                <tr>
+                  <th class="border-right">Place chips</th>
+                  <td class="has-text-centered"><b>10/15</b></td>
+                  <td class="has-text-centered">0/15</td>
+                  <td class="has-text-centered border-right">0/15</td>
+                </tr>
+                <tr>
+                  <th class="border-right">Twist bottle cap</th>
+                  <td class="has-text-centered"><b>13/15</b></td>
+                  <td class="has-text-centered">11/15 (1/15 break gripper pads)</td>
+                  <td class="has-text-centered border-right">0/15</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <p>TABLE II: Performance comparison of different gripper action spaces in Robot Teleop Demo</p>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="table-container">
+            <table class="table is-fullwidth">
+              <tbody>
+                <tr>
+                  <th class="border-right"></th>
+                  <th class="has-text-centered">FTF</th>
+                  <th class="has-text-centered">Binary Gripper</th>
+                  <th class="has-text-centered border-right">Continuous Gripper</th>
+                </tr>
+                <tr>
+                  <th class="border-right">Place bread on plate</th>
+                  <td class="has-text-centered"><b>5/15</b></td>
+                  <td class="has-text-centered">0/15</td>
+                  <td class="has-text-centered border-right">3/15</td>
+                </tr>
+                <tr>
+                  <th class="border-right">Unstack cup</th>
+                  <td class="has-text-centered"><b>4/15</b></td>
+                  <td class="has-text-centered">0/15 (6 picked 3 cups)</td>
+                  <td class="has-text-centered border-right">0/15 (2 picked 2 cups)</td>
+                </tr>
+                <tr>
+                  <th class="border-right">Place egg in pot</th>
+                  <td class="has-text-centered">0/15</td>
+                  <td class="has-text-centered">0/15</td>
+                  <td class="has-text-centered border-right">0/15</td>
+                </tr>
+                <tr>
+                  <th class="border-right">Place chips</th>
+                  <td class="has-text-centered"><b>3/15</b></td>
+                  <td class="has-text-centered">0/15</td>
+                  <td class="has-text-centered border-right">0/15</td>
+                </tr>
+                <tr>
+                  <th class="border-right">Twist bottle cap</th>
+                  <td class="has-text-centered">9/15</td>
+                  <td class="has-text-centered"><b>12/15</b></td>
+                  <td class="has-text-centered border-right">8/15</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- <p>All models are trained on 30 demos per task.</p> -->
+    </div>
+
+    
+  </div>
+</section>
+
+
+<!-- TODO: BibTex -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{adeniji2025feelforcecontactdrivenlearning,
+      title={Feel the Force: Contact-Driven Learning from Humans}, 
+      author={Ademi Adeniji and Zhuoran Chen and Vincent Liu and Venkatesh Pattabiraman and Raunaq Bhirangi and Siddhant Haldar and Pieter Abbeel and Lerrel Pinto},
+      year={2025},
+      eprint={2506.01944},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2506.01944}, 
+}
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is modified from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies Template</a>.
+            Some website materials are adapted from <a
+              href="https://transic-robot.github.io/">T<span style="font-variant-caps:all-small-caps;">RANSIC</span></a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>
